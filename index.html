@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title> </title>
+  </head>
+  <body>
+    <h1>Signup</h1>
+    <form id="signup-form">
+        <input type="text" id="Name" autocomplete="off" placeholder="Name"/>
+        <input type="text" id="Email" placeholder="Email"/>
+        <input type="text" id="Password" placeholder="Password"/>
+        <input type="number" id="Number" placeholder="Number"/>
+        <input type="number" id="Age" placeholder="Age"/>
+        <input type="text" id="Address" placeholder="Address"/>
+        <input type="submit" value="Submit Form"/>
+    </form>
+
+    <script>
+        const form = document.getElementById('signup-form')
+        form.addEventListener('submit',SignipUser)
+
+       async function Signup(event){
+            event.preventDefault()
+            const Name = document.getElementById(Name)
+            const Email = document.getElementById(Email)
+            const Password = document.getElementById(Password)
+            const Number = document.getElementById(Number)
+            const Age = document.getElementById(Age)
+            const Address = document.getElementById(Address)
+
+            const result = await fetch('/api/Signup',{
+                method:'POST',
+                headers:{
+                    'Content-Type':'application/json'
+                },
+                body : JSON.stringify({
+                    Name,
+                    Email,
+                    Password,
+                    Number,
+                    Age,
+                    Address
+                })
+                
+            }).then(res =>res.json())
+
+            console.log(result)
+        }
+    </script>
+  </body>
+</html>
